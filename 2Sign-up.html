@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Website login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form>
+          <h1>Create Account</h1>
+          <div class="social-icons">
+            <a href="#" class="icons"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icons"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+          </div>
+          <span>Use your email for registration</span>
+          <input type="text" placeholder="Name" />
+          <input type="email" placeholder="Email-ID" />
+          <input type="password" placeholder="Password" />
+          <button id="signupbtn">Sign Up</button>
+          <div class="return" id="returnMessage"></div>
+          <div class="popup-btn"><button type="button"  class="close-btn"  onclick="togglepopup()">Password and Email Format</button></div>
+          <span id="reference"><a href="sign-in.html">Sign In</a></span>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="popup-1">
+      <div class="overlay">
+        <div class="content">
+          <div class="close-btn" onclick="togglepopup()""><i class="fa-solid fa-x"></i></div>
+          <h1 class="heading1">Password and Email Format</h1>
+          <h3 class="heading3">Password format</h3>
+          <div class="passwordformat">
+          <p><li>Your password must be at least 8 characters long</li></p>
+          <p><li>At least one lowercase letter (a-z)</li></p>
+          <p><li>At least one uppercase letter (A-Z)</li></p>
+          <p><li>At least one numeric digit (0-9)</li></p>
+          <p><li> one special character (@$!%*?&#)</li></p>
+        </div>
+        <h3 class="heading4">Email Format</h3>
+        <div class="emailformat">
+          <p><li>Must contain an "@" symbol separating local and domain parts</li></p>
+          <p><li>Can include letters, digits, and special characters</li></p>
+          <p><li>Must end with a valid top-level domain(.com , .net etc)</li></p>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+    <script>
+      function togglepopup(){
+        document.getElementById("popup-1").classList.toggle("active")
+      }
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      function isValidPassword(password) {
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+        return passwordRegex.test(password);
+      }
+
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const returnMessage = document.getElementById("returnMessage");
+        const password = document.querySelector('input[type="password"]').value;
+        const email = document
+          .querySelector('input[type="email"]')
+          .value.trim();
+
+        if (!isValidEmail(email)) {
+          returnMessage.innerText = "Enter a valid email!";
+          returnMessage.style.color = "red";
+        } else if (!isValidPassword(password)) {
+          returnMessage.innerText = "Enter a valid password!";
+          returnMessage.style.color = "red";
+        } else {
+          returnMessage.innerText = "Creation successful!";
+          returnMessage.style.color = "green";
+          alert("User Creation Successfull");
+        }
+        setTimeout(function () {
+          window.location.href = "sign-in.html";
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Website login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style1.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-in">
+        <form>
+          <h1>Welcome Back</h1>
+          <div class="social-icons">
+            <a href="#" class="icons"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icons"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+          </div>
+          <span>Use your Credentials to Login</span>
+          <input type="email" placeholder="Email id or Username" />
+          <input type="password" placeholder="Password" />
+          <button id="signInButton">Sign In</button>
+
+          <div class="sign-up">
+            <span><a href="Sign-up.html">Sign up</a></span>
+          </div>
+
+          <span id="refer"
+            ><a href="forgotpass.html">Forgot your Password?</a></span
+          >
+        </form>
+      </div>
+    </div>
+    <script>
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+      function isValidPassword(password) {
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+        return passwordRegex.test(password);
+      }
+      document
+        .getElementById("signInButton")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const email = document
+            .querySelector('input[type="email"]')
+            .value.trim();
+          const password = document
+            .querySelector('input[type="password"]')
+            .value.trim();
+          if (!isValidEmail(email)) {
+            alert("Enter the correct Email Address");
+            return;
+          }
+          if (!isValidPassword(password)) {
+            alert(
+              "Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character."
+            );
+            return;
+          }
+          alert("Login successful!");
+          window.location.href = "dashboard.html";
+        });
+    </script>
+  </body>
+</html>

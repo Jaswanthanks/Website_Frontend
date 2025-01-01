@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Website login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container forgot-pass">
+        <form>
+          <h1>Forgot Password</h1>
+          <div class="social-icons">
+            <a href="#" class="icons"><i class="fa-brands fa-google"></i></a>
+          </div>
+          <span>Use your email for registration</span>
+          <input type="email" placeholder="Email-ID" />
+          <button id="validatebtn">Validate</button>
+          <div class="return">
+            <span class="refer"
+              ><a href="sign-in.html">Return to Sign In </a></span
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      document
+        .getElementById("validatebtn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const email = document
+            .querySelector('input[type="email"]')
+            .value.trim();
+          if (!isValidEmail(email)) {
+            alert("Enter a valid email id");
+            return;
+          }
+          alert("OTP sent to the registered Email ID");
+          window.location.href = "otp.html";
+        });
+    </script>
+  </body>
+</html>
